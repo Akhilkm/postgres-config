@@ -20,7 +20,7 @@ apt install postgresql-client-15
 ### Replica
 
 1. cd /opt/postgresql
-2. docker run -it -v ./backup:/backup postgres:15 pg_basebackup -h 172.31.80.24 -U replicator -X stream -Fp -Xs -P -R -D ./data
+2. docker run -it -v $PWD/data:/data postgres:15 pg_basebackup -h <master_ip> -p <master_port> -U replicator -X stream -Fp -Xs -P -R -D ./data
 3. Update IP in the last line with master server ip
 4. docker compose up -d
 
