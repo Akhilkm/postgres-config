@@ -45,3 +45,15 @@ select * from pg_stat_wal_receiver;
 ```
 
 Failover
+
+
+### Backup 
+```
+pg_dump -h 192.168.102.247 -p 5432 -U postgres -Fc -b -v -f staging_dump.sql -d wfms_db
+```
+
+### Restore
+```
+create database wfms_db
+pg_restore -v -h 192.168.102.249 -p 5438 -U postgres -d wfms_db -j 2 staging_dump.sql
+```
